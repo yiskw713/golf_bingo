@@ -14,28 +14,28 @@
 .inputbox {
   margin: 20px auto;
   text-align: center;
-  font-size: 24px;
+  font-size: 32px;
   padding: 10px 0px;
 }
 
 .inputbox #scoreInput {
   text-align: center;
   border: grey 0.5px solid;
-  height: 40px;
+  height: 48px;
   width: 100px;
   vertical-align: middle;
 }
 
 .inputbox #button {
   text-align: center;
-  height: 40px;
+  height: 48px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   vertical-align: middle;
   margin: 0 10px;
   padding: 0 10px;
-  font-size: 24px;
+  font-size: 32px;
   border-radius: 2px;
   background: #FFD280;
   color: #fff;
@@ -47,14 +47,14 @@
 #bingo {
   width: 95%;
   margin: 0 auto;
-  font-size: 18px;
+  font-size: 24px;
   padding: 20px;
 }
 
 /* B I N G O の文字のスタイル */
 #bingo th {
   color: #ee7800;
-  font-size: 24px;
+  font-size: 32px;
 }
 
 /* 番号のスタイルを設定 */
@@ -92,7 +92,7 @@ header {
 header h1 {
   margin: 0;
   padding: 0;
-  font-size: 32px;
+  font-size: 40px;
 }
 
 header a {
@@ -110,7 +110,7 @@ header ul {
 
 header li {
   margin: 0 0 0 15px;
-  font-size: 18px;
+  font-size: 24px;
 }
 
 header nav {
