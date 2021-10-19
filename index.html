@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+
+    <!-- font awesome -->
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+
+    <!-- lato font -->
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+
+    <!-- ress.css -->
+    <link rel='stylesheet' href='https://unpkg.com/ress/dist/ress.min.css'>
+
+    <title>
+        ゴルフビンゴ
+    </title>
+    <meta name="description" content="ゴルフビンゴ" />
+
+</head>
+
+<body>
+    <!-- <language initial="ja" lang="ja,en"></language> -->
+
+    <!--タイトル-->
+    <header>
+        <h1>
+            <a href="/">ゴルフビンゴ</a>
+        </h1>
+        <nav class="pc-nav">
+            <ul>
+                <li><a href="#">GitHub</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- チェックボックス -->
+            <div class="inputbox">
+                <input type="text" id="scoreInput" value=0 placeholder="スコアを入力">
+
+                <button type="button" id="button">
+                    作成
+                </button>
+            </div>
+
+            <div>
+                <table id="bingo" cellspacing="10">
+                    <tbody>
+                        <tr>
+                            <th>B</th>
+                            <th>I</th>
+                            <th>N</th>
+                            <th>G</th>
+                            <th>O</th>
+                        </tr>
+                        <tr>
+                            <td id="pannel0"></td>
+                            <td id="pannel1"></td>
+                            <td id="pannel2"></td>
+                            <td id="pannel3"></td>
+                            <td id="pannel4"></td>
+                        </tr>
+                        <tr>
+                            <td id="pannel5"></td>
+                            <td id="pannel6"></td>
+                            <td id="pannel7"></td>
+                            <td id="pannel8"></td>
+                            <td id="pannel9"></td>
+                        </tr>
+                        <tr>
+                            <td id="pannel10"></td>
+                            <td id="pannel11"></td>
+                            <td id="pannel12">Free</td>
+                            <td id="pannel13"></td>
+                            <td id="pannel14"></td>
+                        </tr>
+                        <tr>
+                            <td id="pannel15"></td>
+                            <td id="pannel16"></td>
+                            <td id="pannel17"></td>
+                            <td id="pannel18"></td>
+                            <td id="pannel19"></td>
+                        </tr>
+                        <tr>
+                            <td id="pannel20"></td>
+                            <td id="pannel21"></td>
+                            <td id="pannel22"></td>
+                            <td id="pannel23"></td>
+                            <td id="pannel24"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js" type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+@charset "UTF-8";
+* {
+  font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.container {
+  width: 100%;
+}
+
+/* button */
+.inputbox {
+  margin: 20px auto;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px 0px;
+}
+
+.inputbox #scoreInput {
+  text-align: center;
+  border: grey 0.5px solid;
+  height: 32px;
+  width: 100px;
+}
+
+.inputbox #button {
+  text-align: center;
+  height: 32px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 0 10px;
+  padding: 0 10px;
+  font-size: 16px;
+  border-radius: 2px;
+  background: #FFD280;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+}
+
+.copyright {
+  width: 95%;
+  margin: 0 10px;
+}
+
+/* カード全体のスタイル */
+#bingo {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/* B I N G O の文字のスタイル */
+#bingo th {
+  color: #ee7800;
+}
+
+/* 番号のスタイルを設定 */
+#bingo td {
+  font-weight: normal;
+  width: 60px;
+  height: 80px;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 1.5rem 1.5rem 0 0;
+  color: #ee7800;
+  background-color: #fff;
+  border: 2px solid #ee7800;
+}
+
+/* 番号をチェックした時に変更するクラス、スタイルを設定 */
+#bingo td.clicked {
+  color: #fff;
+  background-color: #ee7800;
+}
+
+header {
+  width: 100%;
+  padding: 20px 4% 10px;
+  background-color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: grey 0.5px solid;
+}
+
+header h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+}
+
+header a {
+  text-decoration: none;
+  color: #4b4b4b;
+}
+
+header ul {
+  list-style: none;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header li {
+  margin: 0 0 0 15px;
+  font-size: 14px;
+}
+
+header nav {
+  margin: 0 0 0 auto;
+}
+/*# sourceMappingURL=stylesheet.css.map */
