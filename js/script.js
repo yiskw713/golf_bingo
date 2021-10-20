@@ -3,8 +3,6 @@
 
 import { beginnerPannels, intermediatePannels, expertPannels } from "./pannel.js";
 
-// buttonがクリックされた時にキャラクターを選ぶ
-const button = document.getElementById("button");
 let clickedPannel = new Set();
 
 // cookieの保存期間．1週間
@@ -12,20 +10,26 @@ const maxAge = 604800;
 
 // cookieの追加
 const setCookie = () => {
-    const scoreInput = document.getElementById("scoreInput");
-    const score = scoreInput.value;
+    // username
+    const username = getUserName();
+
+    // レベル
+    const levelValue = getLevel();
+
     const clickedValue = JSON.stringify([...clickedPannel]);
-    const scoreValue = JSON.stringify(score);
+    const usernameValue = JSON.stringify(username);
 
     document.cookie = "clicked=" + clickedValue + "; ";
-    document.cookie = "score=" + scoreValue + "; ";
+    document.cookie = "username=" + usernameValue + "; ";
+    document.cookie = "level=" + levelValue + "; ";
     document.cookie = "max-age=" + maxAge + "; ";
 }
 
 // cookieの削除
 const deleteCookie = () => {
     document.cookie = "clicked=; max-age=0";
-    document.cookie = "score=; max-age=0";
+    document.cookie = "username=; max-age=0";
+    document.cookie = "level=; max-age=0";
 }
 
 // cookieの取得
@@ -35,15 +39,22 @@ const getCookie = () => {
         const cookieArr = cookies.split("; ");
         for (let i = 0; i < cookieArr.length; i++) {
             const cookie = cookieArr[i].split("=");
+
             if (cookie[0] === "clicked") {
                 const arr = JSON.parse(cookie[1]);
                 clickedPannel = new Set(arr);
             }
 
-            if (cookie[0] === "score") {
+            if (cookie[0] === "username") {
                 const val = JSON.parse(cookie[1]);
-                const scoreInput = document.getElementById("scoreInput");
-                scoreInput.value = val;
+                const usernameInput = document.getElementById("usernameInput");
+                usernameInput.value = val;
+            }
+
+            if (cookie[0] === "level") {
+                const val = cookie[1];
+                const radioButton = document.getElementsByName("radioButton");
+                radioButton.value = val;
             }
         }
     }
@@ -92,6 +103,80 @@ const makePannel = (i, val) => {
     }
 }
 
+
+const getNumBingo = () => {
+    let cnt = 0;
+    let flag;
+    // 縦
+    for (let i = 0; i < 5; i++) {
+        flag = true;
+        for (let j = 0; j < 5; j++) {
+            const pannelNum = i + j * 5;
+            if (!clickedPannel.has(pannelNum)) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            cnt += 1;
+        }
+    }
+
+    // 横
+    for (let i = 0; i < 5; i++) {
+        flag = true;
+        for (let j = 0; j < 5; j++) {
+            const pannelNum = i * 5 + j;
+            if (!clickedPannel.has(pannelNum)) {
+                flag = false;
+                break;
+            }
+        }
+        if (flag) {
+            cnt += 1;
+        }
+    }
+
+    // 斜め
+    flag = true;
+    const diagonal1 = [0, 6, 12, 18, 24];
+    for (let pannelNum of diagonal1) {
+        if (!clickedPannel.has(pannelNum)) {
+            flag = false;
+            break;
+        }
+    }
+    if (flag) {
+        cnt += 1;
+    }
+
+    flag = true;
+    const diagonal2 = [4, 8, 12, 16, 20];
+    for (let pannelNum of diagonal2) {
+        if (!clickedPannel.has(pannelNum)) {
+            flag = false;
+            break;
+        }
+    }
+    if (flag) {
+        cnt += 1;
+    }
+
+    return cnt;
+}
+
+const getBingoScore = () => {
+    const numBingo = getNumBingo();
+    const numOpenPannels = clickedPannel.size;
+    return 3 * numBingo + numOpenPannels;
+}
+
+const updateMessage = () => {
+    const message = document.getElementById("message");
+    const bingoScore = getBingoScore();
+    message.innerText = bingoScore;
+}
+
 // 初期化
 window.addEventListener("DOMContentLoaded", () => {
     // パネルに関数をセット
@@ -110,10 +195,12 @@ window.addEventListener("DOMContentLoaded", () => {
                 pannel.classList.remove("clicked");
                 clickedPannel.delete(i);
                 setCookie();
+                updateMessage();
             } else {
                 pannel.classList.add("clicked");
                 clickedPannel.add(i);
                 setCookie();
+                updateMessage();
             }
         });
     }
@@ -123,12 +210,21 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 
+const getUserName = () => {
+    const usernameInput = document.getElementById("usernameInput");
+    return usernameInput.value;
+}
+
+
 // スコアに応じてビンゴカードを作成
 const createCard = () => {
-    const scoreInput = document.getElementById("scoreInput");
-    const score = scoreInput.value;
+    const username = getUserName();
+    const level = getLevel();
 
-    const random = new Random(score);
+    // シード化
+    const seed = getSeedFromUserName(username);
+
+    const random = new Random(seed);
     const used = new Set();
 
     // 中央
@@ -142,9 +238,9 @@ const createCard = () => {
             continue;
         }
 
-        if (score <= 0 || score >= 130) {
+        if (level == "beginner") {
             makePannel(cnt, beginnerPannels[i]);
-        } else if (score >= 100) {
+        } else if (level == "intermediate") {
             makePannel(cnt, intermediatePannels[i]);
         } else {
             makePannel(cnt, expertPannels[i]);
@@ -153,6 +249,8 @@ const createCard = () => {
         used.add(i);
         cnt++;
     }
+
+    updateMessage();
 }
 
 
@@ -160,6 +258,31 @@ const changeScore = () => {
     deleteCookie();
     clickedPannel = new Set();
     createCard();
+    setCookie();
 }
 
+const getLevel = () => {
+    const elements = document.getElementsByName('radioButton');
+    const len = elements.length;
+    let checkValue;
+
+    for (let i = 0; i < len; i++) {
+        if (elements.item(i).checked) {
+            checkValue = elements.item(i).value;
+        }
+    }
+    return checkValue;
+}
+
+
+const getSeedFromUserName = (username) => {
+    let charCodeSum = 0;
+    for (let i = 0; i < username.length; i++) {
+        charCodeSum += username.charCodeAt(i);
+    }
+    return charCodeSum;
+}
+
+// buttonがクリックされた時にキャラクターを選ぶ
+const button = document.getElementById("button");
 button.addEventListener("click", changeScore);

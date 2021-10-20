@@ -38,7 +38,22 @@
         <div class="container">
             <!-- チェックボックス -->
             <div class="inputbox">
-                <input type="text" id="scoreInput" value=0 placeholder="スコアを入力">
+                <input type="text" id="usernameInput" value=0 placeholder="ユーザー名">
+
+                <input id="beginner" class="radio-inline__input" type="radio" name="radioButton" value="beginner"
+                    checked="checked" />
+                <label class="radio-inline__label" for="beginner">
+                    初めて
+                </label>
+                <input id="intermediate" class="radio-inline__input" type="radio" name="radioButton"
+                    value="intermediate" />
+                <label class="radio-inline__label" for="intermediate">
+                    初級者
+                </label>
+                <input id="expert" class="radio-inline__input" type="radio" name="radioButton" value="expert" />
+                <label class="radio-inline__label" for="expert">
+                    中級者
+                </label>
 
                 <button type="button" id="button">
                     作成
@@ -93,6 +108,11 @@
                     </tbody>
                 </table>
             </div>
+        </div>
+
+        <div class="messageBox">
+            あなたのスコア(ビンゴ数×3 + 空いている数)
+            <p id="message"></p>
         </div>
     </main>
 

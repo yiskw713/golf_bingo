@@ -15,11 +15,11 @@
     font-size: 32px;
     padding: 10px 0px;
 
-    #scoreInput {
+    #usernameInput {
         text-align: center;
         border: grey 0.5px solid;
         height: 48px;
-        width: 100px;
+        width: 200px;
         vertical-align: middle;
     }
 
@@ -38,6 +38,38 @@
         color:#fff;
         font-weight:bold;
         border:none;
+    }
+
+    .radio-inline__input {
+        clip: rect(1px, 1px, 1px, 1px);
+        position: absolute !important;
+        height: 48px;
+        line-height: 48px;
+        vertical-align: middle;
+        font-size: 24px;
+    }
+
+    .radio-inline__label {
+        display: inline-block;
+        padding: 0rem 1rem;
+        margin-right: 3px;
+        border-radius: 3px;
+        transition: all .2s;
+        height: 48px;
+        vertical-align: middle;
+        background-color: #FAFAFA;
+        line-height: 48px;
+        font-size: 24px;
+    }
+
+    .radio-inline__input:checked + .radio-inline__label {
+        background: #ee7800;
+        color: #fff;
+        text-shadow: 0 0 1px rgba(0,0,0,.7);
+        height: 48px;
+        line-height: 48px;
+        vertical-align: middle;
+        font-size: 24px;
     }
 }
 
@@ -107,5 +139,19 @@ header {
 
     nav {
         margin: 0 0 0 auto;
+    }
+}
+
+.messageBox {
+    margin: 0px auto;
+    text-align: center;
+    font-size: 24px;
+    padding: 10px 0px;
+
+    #message {
+        font-size: 32px;
+        font-weight: bold;
+        color: orangered;
+        margin-bottom: 30px;
     }
 }
