@@ -232,7 +232,14 @@ const createCard = () => {
     // パネルの作成
     let cnt = 0;
     while (cnt < 25) {
-        const i = random.nextInt(0, beginnerPannels.length - 1);
+        let i;
+        if (level == "beginner") {
+            i = random.nextInt(0, beginnerPannels.length - 1);
+        } else if (level == "intermediate") {
+            i = random.nextInt(0, intermediatePannels.length - 1);
+        } else {
+            i = random.nextInt(0, expertPannels.length - 1);
+        }
 
         if (used.has(i)) {
             continue;
