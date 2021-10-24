@@ -53,8 +53,15 @@ const getCookie = () => {
 
             if (cookie[0] === "level") {
                 const val = cookie[1];
-                const radioButton = document.getElementsByName("radioButton");
-                radioButton.value = val;
+                const elements = document.getElementsByName("radioButton");
+
+                for (let i = 0; i < elements.length; i++) {
+                    if (elements.item(i).value == val) {
+                        elements.item(i).checked = true;
+                    } else {
+                        elements.item(i).checked = false;
+                    }
+                }
             }
         }
     }
@@ -290,6 +297,5 @@ const getSeedFromUserName = (username) => {
     return charCodeSum;
 }
 
-// buttonがクリックされた時にキャラクターを選ぶ
 const button = document.getElementById("button");
 button.addEventListener("click", changeScore);
